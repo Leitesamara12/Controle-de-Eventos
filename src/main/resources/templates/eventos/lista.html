@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <!-- Define a codificação dos caracteres -->
+    <meta charset="UTF-8">
+
+    <!-- Nome que aparece na aba do navegador -->
+    <title>Eventos</title>
+
+    <!-- Importa o arquivo CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Título da página -->
+    <h1>Eventos</h1>
+
+    <!-- Botão para cadastrar um novo evento -->
+    <a href="/eventos/novo">Novo Evento</a>
+
+    <!-- Botão para voltar para a página inicial -->
+    <a href="/">Início</a>
+
+    <br><br>
+
+    <!--
+        Tabela que mostra os eventos cadastrados.
+    -->
+    <table border="1">
+
+        <!-- Cabeçalho da tabela -->
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Local</th>
+                <th>Data</th>
+                <th>Capacidade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <!-- Corpo da tabela -->
+        <tbody>
+
+            <!--
+                th:each percorre a lista de eventos.
+                A variável "evento" representa um evento por vez.
+            -->
+            <tr th:each="evento : ${eventos}">
+
+                <!-- Mostra o nome do evento -->
+                <td th:text="${evento.nome}"></td>
+
+                <!-- Mostra o local do evento -->
+                <td th:text="${evento.local}"></td>
+
+                <!-- Mostra a data do evento -->
+                <td th:text="${evento.data}"></td>
+
+                <!-- Mostra a capacidade máxima -->
+                <td th:text="${evento.capacidadeMaxima}"></td>
+
+                <td>
+
+                    <!-- Link para editar o evento -->
+                    <a th:href="@{/eventos/editar/{id}(id=${evento.id})}">
+                        Editar
+                    </a>
+
+                    <!-- Link para excluir o evento -->
+                    <a th:href="@{/eventos/excluir/{id}(id=${evento.id})}">
+                        Excluir
+                    </a>
+
+                    <!-- Link para visualizar os participantes -->
+                    <a th:href="@{/inscricoes/evento/{id}(id=${evento.id})}">
+                        Participantes
+                    </a>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</body>
+
+</html>
