@@ -1,0 +1,469 @@
+/* ==============================
+   FONTES
+   ============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+
+/* ==============================
+   CONFIGURAÇÕES GERAIS
+   ============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #f3f1e8;
+    color: #263127;
+}
+
+
+/* ==============================
+   CONTAINER
+   ============================== */
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* ==============================
+   CABEÇALHO
+   ============================== */
+
+header {
+    min-height: 330px;
+
+    background:
+        linear-gradient(
+            rgba(38, 49, 39, 0.72),
+            rgba(38, 49, 39, 0.82)
+        ),
+        url('https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1800&q=85');
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+
+    color: white;
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 17px;
+    color: #d9dfd4;
+}
+
+
+/* ==============================
+   CONTEÚDO PRINCIPAL
+   ============================== */
+
+main {
+    padding: 45px 0 70px;
+}
+
+
+/* ==============================
+   TOPO DA LISTA
+   ============================== */
+
+.topo-lista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.topo-lista h2 {
+    font-family: 'Playfair Display', serif;
+
+    font-size: 30px;
+
+    color: #263127;
+
+    margin-bottom: 5px;
+}
+
+.topo-lista p {
+    color: #687267;
+}
+
+
+/* ==============================
+   BOTÃO NOVO PARTICIPANTE
+   ============================== */
+
+.btn-novo {
+    background: #536b4d;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 13px 21px;
+
+    border-radius: 6px;
+
+    font-weight: 600;
+
+    transition: 0.25s;
+}
+
+.btn-novo:hover {
+    background: #3f553b;
+
+    transform: translateY(-2px);
+}
+
+
+/* ==============================
+   FILTRO
+   ============================== */
+
+.filtro-container {
+    background: #ffffff;
+
+    padding: 18px;
+
+    border-radius: 10px;
+
+    border: 1px solid #dedfd6;
+
+    box-shadow: 0 5px 20px rgba(38, 49, 39, 0.06);
+
+    margin-bottom: 22px;
+}
+
+#filtro {
+    width: 100%;
+
+    padding: 13px 16px;
+
+    background: #f8f8f4;
+
+    color: #263127;
+
+    border: 1px solid #d5d9d0;
+
+    border-radius: 6px;
+
+    outline: none;
+
+    font-family: 'DM Sans', sans-serif;
+
+    font-size: 14px;
+}
+
+#filtro:focus {
+    border-color: #536b4d;
+}
+
+
+/* ==============================
+   TABELA
+   ============================== */
+
+.tabela-container {
+    background: white;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    border: 1px solid #dedfd6;
+
+    box-shadow: 0 5px 25px rgba(38, 49, 39, 0.07);
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+thead {
+    background: #536b4d;
+}
+
+th {
+    padding: 16px;
+
+    text-align: left;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+
+    color: white;
+}
+
+td {
+    padding: 17px 16px;
+
+    border-bottom: 1px solid #e8e9e2;
+
+    color: #3d473e;
+
+    font-size: 14px;
+}
+
+tbody tr {
+    transition: 0.2s;
+}
+
+tbody tr:hover {
+    background: #f4f6ef;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ==============================
+   BOTÕES DE AÇÃO
+   ============================== */
+
+.acoes {
+    display: flex;
+
+    gap: 8px;
+}
+
+.btn-editar,
+.btn-excluir {
+    text-decoration: none;
+
+    padding: 8px 13px;
+
+    border-radius: 5px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.btn-editar {
+    background: #e8ede2;
+
+    color: #536b4d;
+}
+
+.btn-editar:hover {
+    background: #dce5d5;
+}
+
+.btn-excluir {
+    background: #f2e5df;
+
+    color: #9a5847;
+}
+
+.btn-excluir:hover {
+    background: #ead6ce;
+}
+
+
+/* ==============================
+   NENHUM PARTICIPANTE
+   ============================== */
+
+.sem-eventos {
+    text-align: center;
+
+    padding: 50px;
+
+    color: #899187;
+}
+
+
+/* ==============================
+   FORMULÁRIO
+   ============================== */
+
+.formulario {
+    max-width: 680px;
+
+    margin: 0 auto;
+
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 35px;
+
+    border: 1px solid #dedfd6;
+
+    box-shadow: 0 8px 30px rgba(38, 49, 39, 0.08);
+}
+
+.formulario h2 {
+    font-family: 'Playfair Display', serif;
+
+    color: #263127;
+
+    font-size: 30px;
+
+    margin-bottom: 28px;
+}
+
+.campo {
+    margin-bottom: 20px;
+}
+
+.campo label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #465147;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.campo input {
+    width: 100%;
+
+    padding: 13px;
+
+    background: #f8f8f4;
+
+    color: #263127;
+
+    border: 1px solid #d5d9d0;
+
+    border-radius: 6px;
+
+    outline: none;
+
+    font-family: 'DM Sans', sans-serif;
+
+    font-size: 14px;
+}
+
+.campo input:focus {
+    border-color: #536b4d;
+
+    background: white;
+}
+
+
+/* ==============================
+   BOTÕES DO FORMULÁRIO
+   ============================== */
+
+.botoes-formulario {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 28px;
+}
+
+.btn-salvar {
+    background: #536b4d;
+
+    color: white;
+
+    border: none;
+
+    padding: 13px 22px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-family: 'DM Sans', sans-serif;
+
+    font-weight: 600;
+}
+
+.btn-salvar:hover {
+    background: #3f553b;
+}
+
+.btn-cancelar {
+    background: #e5e7df;
+
+    color: #536b4d;
+
+    text-decoration: none;
+
+    padding: 13px 22px;
+
+    border-radius: 6px;
+
+    font-weight: 600;
+}
+
+.btn-cancelar:hover {
+    background: #d9ddd2;
+}
+
+
+/* ==============================
+   RESPONSIVIDADE
+   ============================== */
+
+@media (max-width: 768px) {
+
+    header {
+        min-height: 260px;
+    }
+
+    header h1 {
+        font-size: 38px;
+    }
+
+    .topo-lista {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 18px;
+    }
+
+    .btn-novo {
+        width: 100%;
+
+        text-align: center;
+    }
+
+    .tabela-container {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 700px;
+    }
+
+    .acoes {
+        flex-direction: column;
+    }
+
+    .formulario {
+        padding: 25px;
+    }
+}

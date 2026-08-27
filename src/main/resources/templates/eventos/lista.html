@@ -3,91 +3,215 @@
 
 <head>
 
-    <!-- Define a codificação dos caracteres -->
     <meta charset="UTF-8">
 
-    <!-- Nome que aparece na aba do navegador -->
-    <title>Eventos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Importa o arquivo CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Eventos - Controle de Eventos</title>
+
+    <!-- CSS da página de eventos -->
+    <link rel="stylesheet" th:href="@{/css/eventos.css}">
 
 </head>
 
 <body>
 
-    <!-- Título da página -->
-    <h1>Eventos</h1>
+<header>
 
-    <!-- Botão para cadastrar um novo evento -->
-    <a href="/eventos/novo">Novo Evento</a>
+    <div class="container">
 
-    <!-- Botão para voltar para a página inicial -->
-    <a href="/">Início</a>
+        <h1>Controle de Eventos</h1>
 
-    <br><br>
+        <p>Cadastre e gerencie seus eventos</p>
 
-    <!--
-        Tabela que mostra os eventos cadastrados.
-    -->
-    <table border="1">
+    </div>
 
-        <!-- Cabeçalho da tabela -->
-        <thead>
+</header>
+
+
+<main class="container">
+
+    <!-- ==============================
+         TOPO DA LISTA
+         ============================== -->
+
+    <section class="topo-lista">
+
+        <div>
+
+            <h2>Eventos cadastrados</h2>
+
+            <p>
+                Confira os eventos registrados no sistema.
+            </p>
+
+        </div>
+
+        <!-- Botão para criar novo evento -->
+
+        <a
+            th:href="@{/eventos/novo}"
+            class="btn-novo">
+
+            + Novo Evento
+
+        </a>
+
+    </section>
+
+
+    <!-- ==============================
+         CAMPO DE BUSCA
+         ============================== -->
+
+    <section class="filtro-container">
+
+        <input
+            type="text"
+            id="filtro"
+            placeholder="🔍 Buscar evento..."
+            onkeyup="filtrarEventos()">
+
+    </section>
+
+
+    <!-- ==============================
+         TABELA DE EVENTOS
+         ============================== -->
+
+    <section class="tabela-container">
+
+        <table>
+
+            <thead>
+
             <tr>
-                <th>Nome</th>
-                <th>Local</th>
-                <th>Data</th>
-                <th>Capacidade</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
 
-        <!-- Corpo da tabela -->
-        <tbody>
+                <th>Nome</th>
+
+                <th>Local</th>
+
+                <th>Data</th>
+
+                <th>Capacidade</th>
+
+                <th>Ações</th>
+
+            </tr>
+
+            </thead>
+
+
+            <tbody id="listaEventos">
 
             <!--
-                th:each percorre a lista de eventos.
-                A variável "evento" representa um evento por vez.
+                Thymeleaf percorre todos os eventos
+                enviados pelo EventoController.
             -->
+
             <tr th:each="evento : ${eventos}">
 
-                <!-- Mostra o nome do evento -->
-                <td th:text="${evento.nome}"></td>
+                <!-- Nome -->
 
-                <!-- Mostra o local do evento -->
-                <td th:text="${evento.local}"></td>
+                <td th:text="${evento.nome}">
+                    Nome do evento
+                </td>
 
-                <!-- Mostra a data do evento -->
-                <td th:text="${evento.data}"></td>
 
-                <!-- Mostra a capacidade máxima -->
-                <td th:text="${evento.capacidadeMaxima}"></td>
+                <!-- Local -->
 
-                <td>
+                <td th:text="${evento.local}">
+                    Local
+                </td>
 
-                    <!-- Link para editar o evento -->
-                    <a th:href="@{/eventos/editar/{id}(id=${evento.id})}">
+
+                <!-- Data -->
+
+                <td th:text="${evento.data}">
+                    Data
+                </td>
+
+
+                <!-- Capacidade -->
+
+                <td th:text="${evento.capacidadeMaxima}">
+                    Capacidade
+                </td>
+
+
+                <!-- ==============================
+                     AÇÕES
+                     ============================== -->
+
+                <td class="acoes">
+
+
+                    <!-- EDITAR -->
+
+                    <a
+                        th:href="@{/eventos/editar/{id}(id=${evento.id})}"
+                        class="btn-editar">
+
                         Editar
+
                     </a>
 
-                    <!-- Link para excluir o evento -->
-                    <a th:href="@{/eventos/excluir/{id}(id=${evento.id})}">
+
+                    <!-- PARTICIPANTES -->
+
+                    <a
+                        th:href="@{/inscricoes/evento/{id}(id=${evento.id})}"
+                        class="btn-participantes">
+
+                        👥 Participantes
+
+                    </a>
+
+
+                    <!-- EXCLUIR -->
+
+                    <a
+                        th:href="@{/eventos/excluir/{id}(id=${evento.id})}"
+                        class="btn-excluir"
+                        onclick="return confirmarExclusao()">
+
                         Excluir
-                    </a>
 
-                    <!-- Link para visualizar os participantes -->
-                    <a th:href="@{/inscricoes/evento/{id}(id=${evento.id})}">
-                        Participantes
                     </a>
 
                 </td>
 
             </tr>
 
-        </tbody>
 
-    </table>
+            <!-- ==============================
+                 NENHUM EVENTO
+                 ============================== -->
+
+            <tr th:if="${#lists.isEmpty(eventos)}">
+
+                <td
+                    colspan="5"
+                    class="sem-eventos">
+
+                    Nenhum evento cadastrado.
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+
+
+<!-- JavaScript -->
+
+<script th:src="@{/js/eventos.js}"></script>
 
 </body>
 

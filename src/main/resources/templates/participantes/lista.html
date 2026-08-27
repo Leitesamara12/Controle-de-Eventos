@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Participantes - Controle de Eventos</title>
+
+    <!-- CSS dos participantes -->
+    <link rel="stylesheet" th:href="@{/css/participantes.css}">
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="container">
+
+        <h1>Controle de Eventos</h1>
+
+        <p>Gerencie os participantes dos seus eventos</p>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <!-- Título e botão de novo participante -->
+    <section class="topo-lista">
+
+        <div>
+
+            <h2>Participantes cadastrados</h2>
+
+            <p>Confira as pessoas registradas no sistema.</p>
+
+        </div>
+
+
+        <!-- Abre o formulário de cadastro -->
+        <a th:href="@{/participantes/novo}" class="btn-novo">
+
+            + Novo Participante
+
+        </a>
+
+    </section>
+
+
+    <!-- Campo de busca -->
+    <section class="filtro-container">
+
+        <input
+            type="text"
+            id="filtro"
+            placeholder="🔍 Buscar participante..."
+            onkeyup="filtrarParticipantes()">
+
+    </section>
+
+
+    <!-- Tabela de participantes -->
+    <section class="tabela-container">
+
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>Nome</th>
+
+                <th>E-mail</th>
+
+                <th>Telefone</th>
+
+                <th>Ações</th>
+
+            </tr>
+
+            </thead>
+
+
+            <tbody id="listaParticipantes">
+
+            <!--
+                Thymeleaf percorre a lista de participantes
+                enviada pelo ParticipanteController.
+            -->
+            <tr th:each="participante : ${participantes}">
+
+                <td th:text="${participante.nome}"></td>
+
+                <td th:text="${participante.email}"></td>
+
+                <td th:text="${participante.telefone}"></td>
+
+
+                <td class="acoes">
+
+                    <!-- Botão editar -->
+                    <a
+                        th:href="@{/participantes/editar/{id}(id=${participante.id})}"
+                        class="btn-editar">
+
+                        Editar
+
+                    </a>
+
+
+                    <!-- Botão excluir -->
+                    <a
+                        th:href="@{/participantes/excluir/{id}(id=${participante.id})}"
+                        class="btn-excluir"
+                        onclick="return confirmarExclusao()">
+
+                        Excluir
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+
+            <!-- Mensagem quando não existem participantes -->
+            <tr th:if="${#lists.isEmpty(participantes)}">
+
+                <td colspan="4" class="sem-eventos">
+
+                    Nenhum participante cadastrado.
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+
+
+<!-- JavaScript dos participantes -->
+<script th:src="@{/js/participantes.js}"></script>
+
+</body>
+
+</html>

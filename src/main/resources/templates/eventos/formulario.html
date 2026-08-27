@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Evento - Controle de Eventos</title>
+
+    <link rel="stylesheet" th:href="@{/css/eventos.css}">
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <h1>Controle de Eventos</h1>
+        <p>Cadastre ou edite um evento</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="formulario">
+
+        <!--
+            Se o evento possui ID, estamos editando.
+            Se não possui ID, estamos cadastrando.
+        -->
+        <h2 th:if="${evento.id == null}">
+            Cadastrar Evento
+        </h2>
+
+        <h2 th:if="${evento.id != null}">
+            Editar Evento
+        </h2>
+
+
+        <form
+            th:action="@{/eventos/salvar}"
+            th:object="${evento}"
+            method="post">
+
+            <!--
+                Campo escondido utilizado para identificar
+                o evento quando estivermos editando.
+            -->
+            <input
+                type="hidden"
+                th:field="*{id}">
+
+
+            <!-- Nome -->
+            <div class="campo">
+
+                <label for="nome">
+                    Nome do evento:
+                </label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    th:field="*{nome}"
+                    placeholder="Digite o nome do evento"
+                    required>
+
+            </div>
+
+
+            <!-- Local -->
+            <div class="campo">
+
+                <label for="local">
+                    Local:
+                </label>
+
+                <input
+                    type="text"
+                    id="local"
+                    th:field="*{local}"
+                    placeholder="Digite o local do evento"
+                    required>
+
+            </div>
+
+
+            <!-- Data -->
+            <div class="campo">
+
+                <label for="data">
+                    Data:
+                </label>
+
+                <input
+                    type="date"
+                    id="data"
+                    th:field="*{data}"
+                    required>
+
+            </div>
+
+
+            <!-- Capacidade -->
+            <div class="campo">
+
+                <label for="capacidadeMaxima">
+                    Capacidade máxima:
+                </label>
+
+                <input
+                    type="number"
+                    id="capacidadeMaxima"
+                    th:field="*{capacidadeMaxima}"
+                    min="1"
+                    placeholder="Digite a capacidade máxima"
+                    required>
+
+            </div>
+
+
+            <!-- Botões -->
+            <div class="botoes-formulario">
+
+                <button
+                    type="submit"
+                    class="btn-salvar">
+                    Salvar Evento
+                </button>
+
+                <a
+                    th:href="@{/eventos}"
+                    class="btn-cancelar">
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

@@ -10,14 +10,15 @@ import java.util.List;
 @Service
 public class EventoService {
 
+    // Repository usado para acessar o banco.
     private final EventoRepository eventoRepository;
 
-    // Recebe o Repository que será usado para acessar o banco.
+    // Recebe o Repository que será usado pelo Service.
     public EventoService(EventoRepository eventoRepository) {
         this.eventoRepository = eventoRepository;
     }
 
-    // Busca todos os eventos cadastrados no banco.
+    // Busca todos os eventos cadastrados.
     public List<Evento> listar() {
         return eventoRepository.findAll();
     }
@@ -25,15 +26,18 @@ public class EventoService {
     // Busca um evento pelo ID.
     public Evento buscarPorId(Long id) {
         return eventoRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Evento não encontrado."));
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Evento não encontrado."));
     }
 
     // Cadastra ou atualiza um evento.
     public Evento salvar(Evento evento) {
 
-        // Verifica se a capacidade máxima é maior que zero.
+        // Verifica se a capacidade é menor ou igual a zero.
         if (evento.getCapacidadeMaxima() <= 0) {
-            throw new IllegalArgumentException("A capacidade deve ser maior que zero.");
+            throw new IllegalArgumentException(
+                    "A capacidade deve ser maior que zero."
+            );
         }
 
         return eventoRepository.save(evento);
