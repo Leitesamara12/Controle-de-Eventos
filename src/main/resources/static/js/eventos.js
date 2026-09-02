@@ -16,7 +16,7 @@ function editarEvento(id) {
         })
         .then(evento => {
 
-            // Preenche o formulário com os dados do evento
+            
             document.getElementById("id").value = evento.id;
             document.getElementById("nome").value = evento.nome;
             document.getElementById("local").value = evento.local;

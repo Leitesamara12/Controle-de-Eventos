@@ -1,15 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova Inscrição - Controle de Eventos</title>
 
-    <title>Nova Inscrição - Controle de Eventos</title>
-
-    <link rel="stylesheet" th:href="@{/css/inscricoes.css}">
+<link rel="stylesheet" th:href="@{/css/inscricoes.css}">
 
 </head>
 
@@ -17,144 +17,178 @@
 
 <header>
 
-    <div class="container">
+<div class="container">
 
-        <h1>Controle de Eventos</h1>
+    <h1>Controle de Eventos</h1>
 
-        <p>Realize a inscrição de participantes nos eventos</p>
+    <p>Realize a inscrição de participantes nos eventos</p>
 
-    </div>
+    <!-- ==============================
+         MENU PRINCIPAL
+         ============================== -->
+
+    <nav>
+
+        <a th:href="@{/}">
+            Início
+        </a>
+
+        <a th:href="@{/eventos}">
+            Eventos
+        </a>
+
+        <a th:href="@{/participantes}">
+            Participantes
+        </a>
+
+        <a th:href="@{/inscricoes/nova}">
+            Inscrições
+        </a>
+
+        <a th:href="@{/controle-evento}">
+            Controle do Evento
+        </a>
+
+    </nav>
+
+</div>
 
 </header>
 
-
 <main class="container">
 
-    <section class="formulario">
+<section class="formulario">
 
-        <h2>Nova Inscrição</h2>
+    <h2>Nova Inscrição</h2>
 
-        <p class="descricao">
-            Selecione o evento e o participante para realizar a inscrição.
-        </p>
+    <p class="descricao">
+        Selecione o evento e o participante para realizar a inscrição.
+    </p>
 
 
-        <!--
-            Mensagem de erro enviada pelo Controller.
-            Pode aparecer quando o evento estiver lotado
-            ou quando o participante já estiver inscrito.
-        -->
-        <div
-            th:if="${erro}"
-            class="mensagem-erro"
-            th:text="${erro}">
+    <!--
+        Mensagem de erro enviada pelo Controller.
+        Pode aparecer quando o evento estiver lotado
+        ou quando o participante já estiver inscrito.
+    -->
 
-            Erro ao realizar inscrição.
+    <div
+        th:if="${erro}"
+        class="mensagem-erro"
+        th:text="${erro}">
+
+        Erro ao realizar inscrição.
+
+    </div>
+
+
+    <form
+        th:action="@{/inscricoes/salvar}"
+        method="post">
+
+
+        <!-- Seleção do evento -->
+
+        <div class="campo">
+
+            <label for="eventoId">
+                Evento:
+            </label>
+
+            <select
+                id="eventoId"
+                name="eventoId"
+                required>
+
+                <option value="">
+                    Selecione um evento
+                </option>
+
+                <!--
+                    Thymeleaf percorre todos os eventos
+                    enviados pelo Controller.
+                -->
+
+                <option
+                    th:each="evento : ${eventos}"
+                    th:value="${evento.id}"
+                    th:text="${evento.nome}">
+
+                    Nome do evento
+
+                </option>
+
+            </select>
 
         </div>
 
 
-        <form
-            th:action="@{/inscricoes/salvar}"
-            method="post">
+        <!-- Seleção do participante -->
+
+        <div class="campo">
+
+            <label for="participanteId">
+                Participante:
+            </label>
+
+            <select
+                id="participanteId"
+                name="participanteId"
+                required>
+
+                <option value="">
+                    Selecione um participante
+                </option>
+
+                <!--
+                    Thymeleaf percorre todos os participantes
+                    enviados pelo Controller.
+                -->
+
+                <option
+                    th:each="participante : ${participantes}"
+                    th:value="${participante.id}"
+                    th:text="${participante.nome}">
+
+                    Nome do participante
+
+                </option>
+
+            </select>
+
+        </div>
 
 
-            <!-- Seleção do evento -->
-            <div class="campo">
+        <!-- Botões -->
 
-                <label for="eventoId">
-                    Evento:
-                </label>
+        <div class="botoes-formulario">
 
-                <select
-                    id="eventoId"
-                    name="eventoId"
-                    required>
+            <button
+                type="submit"
+                class="btn-salvar">
 
-                    <option value="">
-                        Selecione um evento
-                    </option>
+                Realizar Inscrição
 
-                    <!--
-                        Thymeleaf percorre todos os eventos
-                        enviados pelo Controller.
-                    -->
-                    <option
-                        th:each="evento : ${eventos}"
-                        th:value="${evento.id}"
-                        th:text="${evento.nome}">
-
-                        Nome do evento
-
-                    </option>
-
-                </select>
-
-            </div>
+            </button>
 
 
-            <!-- Seleção do participante -->
-            <div class="campo">
+            <!-- Voltar para a tela principal -->
 
-                <label for="participanteId">
-                    Participante:
-                </label>
+            <a
+                th:href="@{/}"
+                class="btn-cancelar">
 
-                <select
-                    id="participanteId"
-                    name="participanteId"
-                    required>
+                ← Voltar para tela principal
 
-                    <option value="">
-                        Selecione um participante
-                    </option>
+            </a>
 
-                    <!--
-                        Thymeleaf percorre todos os participantes
-                        enviados pelo Controller.
-                    -->
-                    <option
-                        th:each="participante : ${participantes}"
-                        th:value="${participante.id}"
-                        th:text="${participante.nome}">
+        </div>
 
-                        Nome do participante
+    </form>
 
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- Botões -->
-            <div class="botoes-formulario">
-
-                <button
-                    type="submit"
-                    class="btn-salvar">
-
-                    Realizar Inscrição
-
-                </button>
-
-
-                <a
-                    th:href="@{/eventos}"
-                    class="btn-cancelar">
-
-                    Cancelar
-
-                </a>
-
-            </div>
-
-        </form>
-
-    </section>
+</section>
 
 </main>
-
 
 <script th:src="@{/js/inscricoes.js}"></script>
 

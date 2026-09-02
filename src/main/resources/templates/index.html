@@ -1,15 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Controle de Eventos</title>
 
-    <title>Controle de Eventos</title>
-
-    <link rel="stylesheet" th:href="@{/css/index.css}">
+<link rel="stylesheet" th:href="@{/css/index.css}">
 
 </head>
 
@@ -17,37 +17,35 @@
 
 <header>
 
-    <div class="container">
+<div class="container">
 
-        <div class="logo">
-            <div class="icone">✦</div>
-            CONTROLE DE EVENTOS
-        </div>
+    <div class="logo">
 
-        <nav>
+        <div class="icone">✦</div>
 
-            <a th:href="@{/eventos}">
-                Eventos
-            </a>
-
-            <a th:href="@{/participantes}">
-                Participantes
-            </a>
-
-            <a th:href="@{/inscricoes/nova}">
-                Inscrições
-            </a>
-
-            <a th:href="@{/controle-evento}">
-                Controle
-            </a>
-
-        </nav>
+        CONTROLE DE EVENTOS
 
     </div>
 
-</header>
+    <nav>
 
+        <a th:href="@{/eventos}">
+            Eventos
+        </a>
+
+        <a th:href="@{/participantes}">
+            Participantes
+        </a>
+
+        <a th:href="@{/inscricoes/nova}">
+            Inscrições
+        </a>
+
+    </nav>
+
+</div>
+
+</header>
 
 <!-- ==============================
      HERO
@@ -55,51 +53,57 @@
 
 <section class="hero">
 
-    <div class="container hero-conteudo">
+<div class="container hero-conteudo">
 
-        <div class="texto-hero">
+    <div class="texto-hero">
 
-            <span class="etiqueta">
-                GESTÃO • ORGANIZAÇÃO • EVENTOS
-            </span>
+        <span class="etiqueta">
+            GESTÃO • ORGANIZAÇÃO • EVENTOS
+        </span>
 
-            <h1>
-                Controle seus eventos
-                <strong>com praticidade.</strong>
-            </h1>
+        <h1>
 
-            <p>
-                Organize eventos, cadastre participantes,
-                realize inscrições e acompanhe tudo em
-                um só lugar.
-            </p>
+            Controle seus eventos
 
-            <div class="botoes">
+            <strong>com praticidade.</strong>
 
-                <a
-                    th:href="@{/eventos/novo}"
-                    class="btn-principal">
+        </h1>
 
-                    + Criar evento
+        <p>
 
-                </a>
+            Organize eventos, cadastre participantes,
 
-                <a
-                    th:href="@{/eventos}"
-                    class="btn-secundario">
+            realize inscrições e acompanhe tudo em
 
-                    Ver eventos
+            um só lugar.
 
-                </a>
+        </p>
 
-            </div>
+        <div class="botoes">
+
+            <a
+                th:href="@{/eventos/novo}"
+                class="btn-principal">
+
+                + Criar evento
+
+            </a>
+
+            <a
+                th:href="@{/eventos}"
+                class="btn-secundario">
+
+                Ver eventos
+
+            </a>
 
         </div>
 
     </div>
 
-</section>
+</div>
 
+</section>
 
 <!-- ==============================
      RECURSOS DO SISTEMA
@@ -107,134 +111,116 @@
 
 <section class="recursos">
 
-    <div class="container">
+<div class="container">
 
-        <div class="titulo-secao">
+    <div class="titulo-secao">
 
-            <span>
-                SISTEMA
-            </span>
+        <span>
+            SISTEMA
+        </span>
 
-            <h2>
-                Tudo organizado em um só lugar
-            </h2>
-
-        </div>
-
-
-        <div class="cards">
-
-
-            <!-- EVENTOS -->
-
-            <a
-                th:href="@{/eventos}"
-                class="card">
-
-                <div class="icone-card">
-                    📅
-                </div>
-
-                <h3>
-                    Eventos
-                </h3>
-
-                <p>
-                    Cadastre, edite, visualize e
-                    exclua os eventos do sistema.
-                </p>
-
-                <span class="link-card">
-                    Gerenciar eventos →
-                </span>
-
-            </a>
-
-
-            <!-- PARTICIPANTES -->
-
-            <a
-                th:href="@{/participantes}"
-                class="card">
-
-                <div class="icone-card">
-                    👥
-                </div>
-
-                <h3>
-                    Participantes
-                </h3>
-
-                <p>
-                    Cadastre e gerencie os participantes
-                    que estarão presentes nos eventos.
-                </p>
-
-                <span class="link-card">
-                    Gerenciar participantes →
-                </span>
-
-            </a>
-
-
-            <!-- INSCRIÇÕES -->
-
-            <a
-                th:href="@{/inscricoes/nova}"
-                class="card">
-
-                <div class="icone-card">
-                    🎟️
-                </div>
-
-                <h3>
-                    Inscrições
-                </h3>
-
-                <p>
-                    Realize inscrições relacionando
-                    participantes aos eventos.
-                </p>
-
-                <span class="link-card">
-                    Fazer inscrição →
-                </span>
-
-            </a>
-
-
-            <!-- CONTROLE DO EVENTO -->
-
-            <a
-                th:href="@{/controle-evento}"
-                class="card">
-
-                <div class="icone-card">
-                    🎯
-                </div>
-
-                <h3>
-                    Controle do Evento
-                </h3>
-
-                <p>
-                    Selecione um evento e visualize
-                    seus participantes inscritos.
-                </p>
-
-                <span class="link-card">
-                    Controlar evento →
-                </span>
-
-            </a>
-
-
-        </div>
+        <h2>
+            Tudo organizado em um só lugar
+        </h2>
 
     </div>
 
-</section>
 
+    <div class="cards">
+
+
+        <!-- EVENTOS -->
+
+        <a
+            th:href="@{/eventos}"
+            class="card">
+
+            <div class="icone-card">
+                📅
+            </div>
+
+            <h3>
+                Eventos
+            </h3>
+
+            <p>
+
+                Cadastre, edite, visualize e
+
+                exclua os eventos do sistema.
+
+            </p>
+
+            <span class="link-card">
+                Gerenciar eventos →
+            </span>
+
+        </a>
+
+
+        <!-- PARTICIPANTES -->
+
+        <a
+            th:href="@{/participantes}"
+            class="card">
+
+            <div class="icone-card">
+                👥
+            </div>
+
+            <h3>
+                Participantes
+            </h3>
+
+            <p>
+
+                Cadastre e gerencie os participantes
+
+                que estarão presentes nos eventos.
+
+            </p>
+
+            <span class="link-card">
+                Gerenciar participantes →
+            </span>
+
+        </a>
+
+
+        <!-- INSCRIÇÕES -->
+
+        <a
+            th:href="@{/inscricoes/nova}"
+            class="card">
+
+            <div class="icone-card">
+                🎟️
+            </div>
+
+            <h3>
+                Inscrições
+            </h3>
+
+            <p>
+
+                Realize inscrições relacionando
+
+                participantes aos eventos.
+
+            </p>
+
+            <span class="link-card">
+                Fazer inscrição →
+            </span>
+
+        </a>
+
+
+    </div>
+
+</div>
+
+</section>
 
 <!-- ==============================
      RODAPÉ
@@ -242,20 +228,19 @@
 
 <footer>
 
-    <div class="container">
+<div class="container">
 
-        <span>
-            Controle de Eventos
-        </span>
+    <span>
+        Controle de Eventos
+    </span>
 
-        <span>
-            Sistema de gerenciamento
-        </span>
+    <span>
+        Sistema de gerenciamento
+    </span>
 
-    </div>
+</div>
 
 </footer>
-
 
 </body>
 

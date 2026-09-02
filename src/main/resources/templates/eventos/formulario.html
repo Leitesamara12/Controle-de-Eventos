@@ -1,3 +1,4 @@
+html
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 
@@ -7,6 +8,7 @@
 
     <title>Evento - Controle de Eventos</title>
 
+    <!-- CSS da página de eventos -->
     <link rel="stylesheet" th:href="@{/css/eventos.css}">
 </head>
 
@@ -14,37 +16,60 @@
 
 <header>
     <div class="container">
+
         <h1>Controle de Eventos</h1>
+
         <p>Cadastre ou edite um evento</p>
+
+        <!-- MENU PRINCIPAL -->
+        <nav>
+            <a th:href="@{/}">
+                Início
+            </a>
+
+            <a th:href="@{/eventos}">
+                Eventos
+            </a>
+
+            <a th:href="@{/participantes}">
+                Participantes
+            </a>
+
+            <a th:href="@{/inscricoes/nova}">
+                Inscrições
+            </a>
+        </nav>
+
     </div>
 </header>
+
 
 <main class="container">
 
     <section class="formulario">
 
         <!--
-            Se o evento possui ID, estamos editando.
-            Se não possui ID, estamos cadastrando.
+            Se o ID estiver vazio, estamos cadastrando.
+            Se o ID existir, estamos editando.
         -->
-        <h2 th:if="${evento.id == null}">
+        <h2 th:text="${evento.id == null ? 'Cadastrar Evento' : 'Editar Evento'}">
             Cadastrar Evento
         </h2>
 
-        <h2 th:if="${evento.id != null}">
-            Editar Evento
-        </h2>
+        <p>
+            Preencha os dados do evento abaixo.
+        </p>
 
 
+        <!--
+            Envia os dados para o EventoController.
+        -->
         <form
             th:action="@{/eventos/salvar}"
             th:object="${evento}"
             method="post">
 
-            <!--
-                Campo escondido utilizado para identificar
-                o evento quando estivermos editando.
-            -->
+            <!-- ID do evento -->
             <input
                 type="hidden"
                 th:field="*{id}">
@@ -54,7 +79,7 @@
             <div class="campo">
 
                 <label for="nome">
-                    Nome do evento:
+                    Nome:
                 </label>
 
                 <input
@@ -111,8 +136,8 @@
                     type="number"
                     id="capacidadeMaxima"
                     th:field="*{capacidadeMaxima}"
+                    placeholder="Digite a capacidade"
                     min="1"
-                    placeholder="Digite a capacidade máxima"
                     required>
 
             </div>
@@ -121,16 +146,23 @@
             <!-- Botões -->
             <div class="botoes-formulario">
 
+                <!-- Salvar -->
                 <button
                     type="submit"
                     class="btn-salvar">
+
                     Salvar Evento
+
                 </button>
 
+
+                <!-- Voltar para a tela principal -->
                 <a
-                    th:href="@{/eventos}"
+                    th:href="@{/}"
                     class="btn-cancelar">
-                    Cancelar
+
+                    ← Voltar para tela principal
+
                 </a>
 
             </div>
@@ -140,6 +172,10 @@
     </section>
 
 </main>
+
+
+<!-- JavaScript dos eventos -->
+<script th:src="@{/js/eventos.js}"></script>
 
 </body>
 

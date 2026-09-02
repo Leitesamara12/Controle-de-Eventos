@@ -1,16 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Participante - Controle de Eventos</title>
 
-    <title>Participante - Controle de Eventos</title>
-
-    <!-- CSS dos participantes -->
-    <link rel="stylesheet" th:href="@{/css/participantes.css}">
+<!-- CSS dos participantes -->
+<link rel="stylesheet" th:href="@{/css/participantes.css}">
 
 </head>
 
@@ -18,127 +18,166 @@
 
 <header>
 
-    <div class="container">
+<div class="container">
 
-        <h1>Controle de Eventos</h1>
+    <!-- Título -->
 
-        <p>Cadastre os participantes dos seus eventos</p>
+    <h1>Controle de Eventos</h1>
 
-    </div>
+    <p>Cadastre os participantes dos seus eventos</p>
+
+
+    <!-- MENU PRINCIPAL -->
+
+    <nav>
+
+        <a th:href="@{/}">
+            Início
+        </a>
+
+        <a th:href="@{/eventos}">
+            Eventos
+        </a>
+
+        <a th:href="@{/participantes}">
+            Participantes
+        </a>
+
+        <a th:href="@{/inscricoes/nova}">
+            Inscrições
+        </a>
+
+        <a th:href="@{/controle-evento}">
+            Controle do Evento
+        </a>
+
+    </nav>
+
+</div>
 
 </header>
 
-
 <main class="container">
 
+<!--
+    Formulário utilizado tanto para cadastro
+    quanto para edição de participante.
+-->
+
+<section class="formulario">
+
     <!--
-        Formulário utilizado tanto para cadastro
-        quanto para edição de participante.
+        Se o participante tiver ID, significa que estamos editando.
+        Caso contrário, estamos cadastrando.
     -->
-    <section class="formulario">
 
-        <!--
-            Se o participante tiver ID, significa que estamos editando.
-            Caso contrário, estamos cadastrando.
-        -->
-        <h2 th:text="${participante.id == null ? 'Cadastrar Participante' : 'Editar Participante'}">
-            Cadastrar Participante
-        </h2>
+    <h2 th:text="${participante.id == null ? 'Cadastrar Participante' : 'Editar Participante'}">
+
+        Cadastrar Participante
+
+    </h2>
 
 
-        <form
-            th:action="@{/participantes/salvar}"
-            th:object="${participante}"
-            method="post">
+    <form
+        th:action="@{/participantes/salvar}"
+        th:object="${participante}"
+        method="post">
 
 
-            <!-- ID do participante -->
+        <!-- ID do participante -->
+
+        <input
+            type="hidden"
+            th:field="*{id}">
+
+
+        <!-- Nome -->
+
+        <div class="campo">
+
+            <label for="nome">
+                Nome:
+            </label>
+
             <input
-                type="hidden"
-                th:field="*{id}">
+                type="text"
+                id="nome"
+                th:field="*{nome}"
+                placeholder="Digite o nome completo"
+                required>
+
+        </div>
 
 
-            <!-- Nome -->
-            <div class="campo">
+        <!-- E-mail -->
 
-                <label for="nome">
-                    Nome:
-                </label>
+        <div class="campo">
 
-                <input
-                    type="text"
-                    id="nome"
-                    th:field="*{nome}"
-                    placeholder="Digite o nome completo"
-                    required>
+            <label for="email">
+                E-mail:
+            </label>
 
-            </div>
+            <input
+                type="email"
+                id="email"
+                th:field="*{email}"
+                placeholder="Digite o e-mail"
+                required>
 
-
-            <!-- E-mail -->
-            <div class="campo">
-
-                <label for="email">
-                    E-mail:
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    th:field="*{email}"
-                    placeholder="Digite o e-mail"
-                    required>
-
-            </div>
+        </div>
 
 
-            <!-- Telefone -->
-            <div class="campo">
+        <!-- Telefone -->
 
-                <label for="telefone">
-                    Telefone:
-                </label>
+        <div class="campo">
 
-                <input
-                    type="tel"
-                    id="telefone"
-                    th:field="*{telefone}"
-                    placeholder="Digite o telefone"
-                    required>
+            <label for="telefone">
+                Telefone:
+            </label>
 
-            </div>
+            <input
+                type="tel"
+                id="telefone"
+                th:field="*{telefone}"
+                placeholder="Digite o telefone"
+                required>
 
-
-            <!-- Botões -->
-            <div class="botoes-formulario">
-
-                <button
-                    type="submit"
-                    class="btn-salvar">
-
-                    Salvar Participante
-
-                </button>
+        </div>
 
 
-                <a
-                    th:href="@{/participantes}"
-                    class="btn-cancelar">
+        <!-- Botões -->
 
-                    Cancelar
+        <div class="botoes-formulario">
 
-                </a>
+            <button
+                type="submit"
+                class="btn-salvar">
 
-            </div>
+                Salvar Participante
 
-        </form>
+            </button>
 
-    </section>
+
+            <!-- Voltar para a tela principal -->
+
+            <a
+                th:href="@{/}"
+                class="btn-cancelar">
+
+                ← Voltar para tela principal
+
+            </a>
+
+        </div>
+
+    </form>
+
+</section>
 
 </main>
 
-
 <!-- JavaScript dos participantes -->
+
 <script th:src="@{/js/participantes.js}"></script>
 
 </body>

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Participantes do Evento - Controle de Eventos</title>
 
-    <title>Participantes do Evento - Controle de Eventos</title>
-
-    <!-- CSS das inscrições -->
-    <link rel="stylesheet" th:href="@{/css/inscricoes.css}">
+<!-- CSS das inscrições -->
+<link rel="stylesheet" th:href="@{/css/inscricoes.css}">
 
 </head>
 
@@ -18,121 +18,148 @@
 
 <header>
 
-    <div class="container">
+<div class="container">
 
-        <h1>Controle de Eventos</h1>
+    <h1>Controle de Eventos</h1>
 
-        <p>Participantes inscritos no evento</p>
+    <p>Participantes inscritos no evento</p>
 
-    </div>
+    <!-- ==============================
+         MENU PRINCIPAL
+         ============================== -->
+
+    <nav>
+
+        <a th:href="@{/}">
+            Início
+        </a>
+
+        <a th:href="@{/eventos}">
+            Eventos
+        </a>
+
+        <a th:href="@{/participantes}">
+            Participantes
+        </a>
+
+        <a th:href="@{/inscricoes/nova}">
+            Inscrições
+        </a>
+
+        <a th:href="@{/controle-evento}">
+            Controle do Evento
+        </a>
+
+    </nav>
+
+</div>
 
 </header>
 
-
 <main class="container">
 
-    <!-- Informações do evento -->
-    <section class="topo-lista">
+<!-- Informações do evento -->
 
-        <div>
+<section class="topo-lista">
 
-            <h2 th:text="${evento.nome}">
-                Nome do evento
-            </h2>
+    <div>
 
-            <p>
-                Confira os participantes inscritos neste evento.
-            </p>
+        <h2 th:text="${evento.nome}">
+            Nome do evento
+        </h2>
 
-        </div>
+        <p>
+            Confira os participantes inscritos neste evento.
+        </p>
 
-        <!-- Voltar para a lista de eventos -->
-        <a
-            th:href="@{/eventos}"
-            class="btn-novo">
-
-            ← Voltar para eventos
-
-        </a>
-
-    </section>
+    </div>
 
 
-    <!-- Informações resumidas -->
-    <section class="tabela-container">
+    <!-- Voltar para a tela principal -->
 
-        <table>
+    <a
+        th:href="@{/}"
+        class="btn-novo">
 
-            <thead>
+        ← Voltar para tela principal
 
-            <tr>
+    </a>
 
-                <th>Nome</th>
-
-                <th>E-mail</th>
-
-                <th>Telefone</th>
-
-            </tr>
-
-            </thead>
+</section>
 
 
-            <tbody>
+<!-- Informações resumidas -->
 
-            <!--
-                Percorre as inscrições do evento.
-                Cada inscrição possui um participante.
-            -->
-            <tr
-                th:each="inscricao : ${evento.inscricoes}">
+<section class="tabela-container">
 
-                <td
-                    th:text="${inscricao.participante.nome}">
+    <table>
 
-                    Nome do participante
+        <thead>
 
-                </td>
+        <tr>
 
-                <td
-                    th:text="${inscricao.participante.email}">
+            <th>Nome</th>
 
-                    E-mail
+            <th>E-mail</th>
 
-                </td>
+            <th>Telefone</th>
 
-                <td
-                    th:text="${inscricao.participante.telefone}">
+        </tr>
 
-                    Telefone
-
-                </td>
-
-            </tr>
+        </thead>
 
 
-            <!-- Caso o evento ainda não tenha participantes -->
-            <tr
-                th:if="${#lists.isEmpty(evento.inscricoes)}">
+        <tbody>
 
-                <td
-                    colspan="3"
-                    class="sem-eventos">
+        <!--
+            Percorre as inscrições do evento.
+            Cada inscrição possui um participante.
+        -->
 
-                    Nenhum participante inscrito neste evento.
+        <tr th:each="inscricao : ${evento.inscricoes}">
 
-                </td>
+            <td th:text="${inscricao.participante.nome}">
 
-            </tr>
+                Nome do participante
 
-            </tbody>
+            </td>
 
-        </table>
+            <td th:text="${inscricao.participante.email}">
 
-    </section>
+                E-mail
+
+            </td>
+
+            <td th:text="${inscricao.participante.telefone}">
+
+                Telefone
+
+            </td>
+
+        </tr>
+
+
+        <!-- Caso o evento ainda não tenha participantes -->
+
+        <tr th:if="${#lists.isEmpty(evento.inscricoes)}">
+
+            <td
+                colspan="3"
+                class="sem-eventos">
+
+                Nenhum participante inscrito neste evento.
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</section>
 
 </main>
-
 
 <script th:src="@{/js/inscricoes.js}"></script>
 
